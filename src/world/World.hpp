@@ -5,26 +5,19 @@
 #include <vector>
 
 class World {
-
-    void initPheromoneSpace() {
-        pheromoneSpace = new float*[width];
-        for(size_t i = 0; i < width; i++) {
-            pheromoneSpace[i] = new float[height]; 
-            for(size_t j = 0; j < height; j++){
-                pheromoneSpace[i][j] = 0;
-            }
-        }
-    }
-
 public:
     size_t width, height;
     float dt, pheromoneRate;
-    float **pheromoneSpace;
+    sf::Image pheromoneSpace;
+    sf::Texture pheromoneTexture;
+    sf::Sprite pheromoneSprite;
     std::vector<Ant> ants;
 
     World(size_t width, size_t height, float dt, float pheromoneRate) 
         : width{width}, height{height}, dt(dt), pheromoneRate(pheromoneRate) {
-        initPheromoneSpace();
+        
+        pheromoneSpace.create(width, height, sf::Color::Black);
+
         ants.push_back(std::move(Ant(500, 400)));
         ants.push_back(std::move(Ant(300, 400)));
         ants.push_back(std::move(Ant(300, 200)));
@@ -34,16 +27,19 @@ public:
         for(auto& ant : ants) {
             size_t i = static_cast<size_t>(ant.pos.x),
                 j = static_cast<size_t>(ant.pos.y);
-            if(i < width && j < height)
-                pheromoneSpace[i][j] += pheromoneRate * dt;
+
+            if(i < width && j < height) {
+                int dp = (int)(100 * pheromoneRate * dt + 0.5f);
+                dp = dp > 255 ? 255 : (dp < 0 ? 0 : dp);
+                pheromoneSpace.setPixel(i, j, sf::Color(dp, dp, dp) + pheromoneSpace.getPixel(i, j));
+            }
         }
+        pheromoneTexture.loadFromImage(pheromoneSpace);
+        pheromoneSprite.setTexture(pheromoneTexture, true);
     }
 
-    ~World() {
-        for(size_t i = 0; i < width; i++) {
-            delete[] pheromoneSpace[i];
-        }
-        delete[] pheromoneSpace;
+    void updateMechanics() {
+        recordTrail();
     }
 };
 

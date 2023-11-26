@@ -13,6 +13,7 @@ public:
     }
 
     void refreshPosition() {
+        pos.x += 1;
         shape.setPosition(pos);
     }
 };

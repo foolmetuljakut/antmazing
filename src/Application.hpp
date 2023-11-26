@@ -86,7 +86,8 @@ namespace antmazing {
             if(backg)
                 return;
 
-            window.clear(sf::Color::Black);
+            // window.clear(sf::Color::Black);
+            window.draw(world.pheromoneSprite);
             
             for(size_t i = 0; i < world.ants.size(); i++) {
                 world.ants[i].refreshPosition();
@@ -120,7 +121,7 @@ namespace antmazing {
 
                 sf::Int64 ph0{0}, c0{0}, go0{0};
                 for(unsigned i{substeps}; i--;) {
-                    // world.updatecoords(dt/substeps);
+                    world.updateMechanics();
                     ph0 += clock.restart().asMicroseconds();
                     // world.updatecollision();
                     c0 += clock.restart().asMicroseconds();
