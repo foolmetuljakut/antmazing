@@ -101,6 +101,7 @@ namespace antmazing {
             w{width}, h{height},
             window(sf::VideoMode(w, h), windowtitle),
             backg{false}, click{false}, fps{0}, phtime{0}, ctime{0}, gtime{0}, gotime{0}, 
+            world(width, height),
             radius{radius}, dt{dt}, substeps{substeps}
             {
                 window.setVerticalSyncEnabled(true);
