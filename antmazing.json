@@ -1,0 +1,17 @@
+{
+    "mainapp": {
+        "target": {
+            "name": "antmazing",
+            "opts": "-fdiagnostics-color=always -g -Wall -Wformat -Werror -Wfatal-errors -lsfml-graphics -lsfml-window -lsfml-system"
+        },
+        "unittestsymbol": "",
+        "unittestlistmax": "1924181360",
+        "files": [
+            {
+                "name": "main.cpp",
+                "hash": "b68dd3c22d8ae4d85a349ce3d6b11ed1"
+            }
+        ]
+    },
+    "projects": ""
+}
