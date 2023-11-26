@@ -9,6 +9,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Exception.hpp"
+#include "world/World.hpp"
 
 namespace antmazing {
     class Application {
@@ -20,9 +21,9 @@ namespace antmazing {
         float fps, phtime, ctime, gtime, gotime;
         sf::Font font; 
 
+        World world;
         float radius, dt;
         unsigned substeps;
-        std::vector<sf::CircleShape> shapes;
 
         void onmouseclicked() { }
         void handleevents() {
@@ -87,10 +88,10 @@ namespace antmazing {
 
             window.clear(sf::Color::Black);
             
-            // for(size_t i{world.objs()}; i--;) {
-            //     shapes[i].setPosition(world[i].pos);
-            //     window.draw(shapes[i]);
-            // }
+            for(size_t i = 0; i < world.ants.size(); i++) {
+                world.ants[i].refreshPosition();
+                window.draw(world.ants[i].shape);
+            }
 
             showfps();
             window.display();
