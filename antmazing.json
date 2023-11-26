@@ -4,12 +4,12 @@
             "name": "antmazing",
             "opts": "-fdiagnostics-color=always -g -Wall -Wformat -Werror -Wfatal-errors -lsfml-graphics -lsfml-window -lsfml-system"
         },
-        "unittestsymbol": "",
-        "unittestlistmax": "1924181360",
+        "unittestsymbol": "ANTMAZING_UT",
+        "unittestlistmax": "1",
         "files": [
             {
                 "name": "main.cpp",
-                "hash": "b68dd3c22d8ae4d85a349ce3d6b11ed1"
+                "hash": "da788494f9b11412c102d3249e49b12d"
             }
         ]
     },
