@@ -22,8 +22,8 @@ public:
     float **pheromoneSpace;
     std::vector<Ant> ants;
 
-    World(size_t width, size_t height, float&& dt, float&& pheromoneRate) 
-        : width{width}, height{height}, dt(std::move(dt)), pheromoneRate(std::move(pheromoneRate)) {
+    World(size_t width, size_t height, float dt, float pheromoneRate) 
+        : width{width}, height{height}, dt(dt), pheromoneRate(pheromoneRate) {
         initPheromoneSpace();
         ants.push_back(std::move(Ant(500, 400)));
         ants.push_back(std::move(Ant(300, 400)));
