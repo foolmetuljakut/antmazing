@@ -91,6 +91,7 @@ namespace antmazing {
             
             for(size_t i = 0; i < world.ants.size(); i++) {
                 world.ants[i].refreshPosition();
+                window.draw(world.ants[i].viewingCircle);
                 window.draw(world.ants[i].shape);
             }
 
